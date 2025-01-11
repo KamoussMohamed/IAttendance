@@ -15,7 +15,7 @@ router.post('/', async (req, res)=>{
 
         const account = await Account.findOne({
             username: username, 
-            password: password
+            password: password,
         });
 
         if(!account){
@@ -23,8 +23,10 @@ router.post('/', async (req, res)=>{
         }
 
         const token = jwt.sign(
-            {userId: account._id,
-                username: account.username
+            {
+                userId: account._id,
+                username: account.username,
+                role: account.role
             },
             JWT_SECRET,
             {expiresIn:'1h'}

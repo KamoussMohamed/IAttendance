@@ -3,6 +3,6 @@ const mongoose = require('mongoose');
 const studentSchema = new mongoose.Schema({
     firstName: String,
     midAndLastName: String
-}, { collection: 'studentCollection' }); // Specify the collection name in the schema options
+}, { collection: 'studentCollection' });
 
 module.exports = mongoose.model('Student', studentSchema);

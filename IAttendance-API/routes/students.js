@@ -2,9 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Student = require('../models/Student');
 const authenticateToken = require('../middlewares/auth');
+const authorizeRole = require('../middlewares/roleAuth');
+
 
 // Get all students
-router.get('/', authenticateToken, async (req, res) => {
+router.get(
+    '/',
+    authenticateToken,
+    authorizeRole('teacher'), 
+    async (req, res) => {
     try {
         const students = await Student.find({});
         res.json(students);
@@ -14,7 +20,7 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Search student by firstName and midAndLastName
-router.get('/search', authenticateToken, async (req, res) => {
+router.get('/search', authenticateToken, authorizeRole('teacher'), async (req, res) => {
     try {
         const { firstName, midAndLastName } = req.query;
         
