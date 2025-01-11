@@ -11,10 +11,12 @@ app.use(cors());
 const studentRoutes = require('./routes/students');
 const absenceRoutes = require('./routes/absences');
 const loginRoutes = require('./routes/login');
+const sessionRoutes = require('./routes/sessions');
 // Use routes
 app.use('/students', studentRoutes);
 app.use('/absences', absenceRoutes);
 app.use('/login', loginRoutes);
+app.use('/sessions', sessionRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
