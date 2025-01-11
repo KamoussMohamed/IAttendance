@@ -1,0 +1,56 @@
+<!-- students.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Management</title>
+    <style>
+        .search-container {
+            margin: 20px 0;
+        }
+        .students-list {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <h2>Search Student</h2>
+        <input type="text" id="firstName" placeholder="First Name">
+        <input type="text" id="midAndLastName" placeholder="Middle and Last Name">
+        <button id="searchBtn">Search</button>
+    </div>
+
+    <div class="students-list">
+        <h2>All Students</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle and Last Name</th>
+                    <!-- Add other student fields as needed -->
+                </tr>
+            </thead>
+            <tbody id="studentsTableBody">
+                <!-- Student data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/studentsPage.js"></script>
+</body>
+</html>
