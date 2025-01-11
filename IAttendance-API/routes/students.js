@@ -7,10 +7,7 @@ const authorizeRole = require('../middlewares/roleAuth');
 
 // Get all students
 router.get(
-    '/',
-    authenticateToken,
-    authorizeRole('teacher'), 
-    async (req, res) => {
+    '/', authenticateToken, authorizeRole('teacher'), async (req, res) => {
     try {
         const students = await Student.find({});
         res.json(students);

@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const AbsentStudent = require('../models/AbsentStudent');
+const authenticateToken = require('../middlewares/auth');
+const authorizeRole = require('../middlewares/roleAuth');
 
 // Get all absences
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken, authorizeRole('teacher'), async (req, res) => {
     try {
         const absences = await AbsentStudent.find({});
         res.json(absences);
@@ -13,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // Search absences by student name and date
-router.get('/search', async (req, res) => {
+router.get('/search',authenticateToken, authorizeRole('teacher'),  async (req, res) => {
     try {
         const { firstName, midAndLastName, dateOfAbsence } = req.query;
         
