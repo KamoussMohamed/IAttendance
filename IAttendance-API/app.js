@@ -10,10 +10,11 @@ app.use(cors());
 // Import routes
 const studentRoutes = require('./routes/students');
 const absenceRoutes = require('./routes/absences');
-
+const loginRoutes = require('./routes/login');
 // Use routes
-app.use('/students', studentRoutes);  // Changed from /studentsList to /students
+app.use('/students', studentRoutes);
 app.use('/absences', absenceRoutes);
+app.use('/login', loginRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
