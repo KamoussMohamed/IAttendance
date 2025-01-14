@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Absences Management</title>
+</head>
+<body>
+    <header>
+        <h1>Student Absences Management</h1>
+        <h4 id="greeting"></h4>
+    </header>
+
+    <main>
+        <section>
+            <h2>Search Absences</h2>
+            <div>
+                <input type="text" id="firstName" placeholder="First Name">
+                <input type="text" id="midAndLastName" placeholder="Middle and Last Name">
+                <input type="date" id="dateOfAbsence">
+                <button id="searchBtn">Search</button>
+                <button id="resetBtn">Reset</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Absences Records</h2>
+            <div id="loading">Loading...</div>
+            <div id="errorMessage"></div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Middle and Last Name</th>
+                        <th>Date of Absence</th>
+                    </tr>
+                </thead>
+                <tbody id="absencesTableBody">
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/absencePage.js"></script>
+</body>
+</html>

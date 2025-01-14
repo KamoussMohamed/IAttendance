@@ -19,6 +19,9 @@ loginButton.addEventListener('click', async function(e){
         if (response.status === 200) {
             // Store the token
             localStorage.setItem('token', response.data.token);
+
+            //Store the username
+            localStorage.setItem('username', response.data.user.username);
             
             // Set default authorization header for all future axios requests
             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
