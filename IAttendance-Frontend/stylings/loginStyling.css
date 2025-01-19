@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F0EBE3;
+}
+
+#loginForm {
+    background-color: #E4DCCF;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(87, 111, 114, 0.1);
+    width: 100%;
+    max-width: 360px;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #576F72;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #7D9D9C;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background-color: rgba(240, 235, 227, 0.5);
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #576F72;
+    box-shadow: 0 0 0 2px rgba(87, 111, 114, 0.1);
+    background-color: rgba(240, 235, 227, 0.8);
+}
+
+input::placeholder {
+    color: #7D9D9C;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #7D9D9C;
+    color: #F0EBE3;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #576F72;
+}
+
+button:active {
+    transform: scale(0.99);
+}
+
+@media (max-width: 480px) {
+    #loginForm {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}

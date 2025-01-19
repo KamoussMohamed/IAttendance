@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAttendance - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #F0EBE3;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #E4DCCF;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(87, 111, 114, 0.1);
+            width: 100%;
+        }
+
+        .welcome-text {
+            font-size: 24px;
+            color: #576F72;
+            letter-spacing: 0.5px;
+        }
+
+        .logout-btn {
+            padding: 8px 20px;
+            background-color: #7D9D9C;
+            color: #F0EBE3;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .logout-btn:hover {
+            background-color: #576F72;
+        }
+
+        .logout-btn:active {
+            transform: scale(0.99);
+        }
+
+        .nav-box {
+            background: #E4DCCF;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(87, 111, 114, 0.1);
+            width: 100%;
+        }
+
+        .navigation-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .nav-button {
+            padding: 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #F0EBE3;
+            color: #576F72;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(87, 111, 114, 0.1);
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .nav-button:hover {
+            background-color: #7D9D9C;
+            color: #F0EBE3;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:active {
+            transform: scale(0.99);
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .welcome-text {
+                font-size: 20px;
+            }
+
+            .nav-box {
+                padding: 20px;
+            }
+
+            .navigation-container {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="header">
+            <h1 class="welcome-text">Welcome, <span id="username"></span></h1>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="nav-box">
+            <div class="navigation-container" id="navigationContainer">
+                <!-- Buttons will be added dynamically based on role -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Display username and role
+        const username = localStorage.getItem('username');
+        const userRole = localStorage.getItem('userRole');
+        const capitalizedRole = userRole ? userRole.charAt(0).toUpperCase() + userRole.slice(1) : 'User';
+        document.getElementById('username').textContent = `${username || 'User'} (${capitalizedRole})`;
+
+        // Function to create navigation buttons based on role
+        function createNavigationButtons() {
+            const navigationContainer = document.getElementById('navigationContainer');
+            navigationContainer.innerHTML = ''; // Clear existing buttons
+
+            if (userRole === 'admin') {
+                // Admin only sees Sessions Management
+                navigationContainer.innerHTML = `
+                    <button class="nav-button sessions" onclick="window.location.href='sessions.html'">
+                        Sessions Management
+                    </button>
+                `;
+            } else {
+                // Non-admin users see Students List and Absence Management
+                navigationContainer.innerHTML = `
+                    <button class="nav-button students" onclick="window.location.href='students.html'">
+                        Students List
+                    </button>
+                    <button class="nav-button absence" onclick="window.location.href='absence.html'">
+                        Absence Management
+                    </button>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            localStorage.removeItem('userRole');
+            window.location.href = 'login.html';
+        }
+
+        // Create buttons when page loads
+        createNavigationButtons();
+    </script>
+</body>
+</html>

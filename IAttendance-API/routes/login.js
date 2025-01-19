@@ -33,7 +33,8 @@ router.post('/', async (req, res)=>{
         );
 
         const userResponse = {
-            username : account.username
+            username : account.username,
+            role: account.role
         }
 
         res.status(200).json({

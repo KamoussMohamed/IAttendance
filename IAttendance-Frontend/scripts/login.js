@@ -20,14 +20,17 @@ loginButton.addEventListener('click', async function(e){
             // Store the token
             localStorage.setItem('token', response.data.token);
 
-            //Store the username
-            localStorage.setItem('username', response.data.user.username);
+            // Store the username
+            localStorage.setItem('username', response.data.debugUser.username);
+            
+            // Store the role from debugUser
+            localStorage.setItem('userRole', response.data.debugUser.role);
             
             // Set default authorization header for all future axios requests
             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
             
-            // Redirect to students page
-            window.location.href = '/IAttendance-Frontend/pages/students.html';
+            // Redirect to home page
+            window.location.href = '/IAttendance-Frontend/pages/home.html';
         }
     } catch (error) {
         // Show error to user
@@ -38,15 +41,3 @@ loginButton.addEventListener('click', async function(e){
         loginButton.textContent = 'Login';
     }
 });
-
-// Add this to handle cases where the token might be invalid or expired
-axios.interceptors.response.use(
-    response => response,
-    error => {
-        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
-            localStorage.removeItem('token');
-            window.location.href = '/login'; // Redirect to login page
-        }
-        return Promise.reject(error);
-    }
-);
